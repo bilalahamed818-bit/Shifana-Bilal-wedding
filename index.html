@@ -42,6 +42,19 @@ h2{font-size:clamp(43px,7vw,72px);line-height:.92;margin:15px 0 24px}.intro p,.c
   .family-card:last-child{grid-column:1 / -1;max-width:50%;justify-self:center;width:100%}
 }
 
+.islamic-blessing{background:linear-gradient(145deg,#092720,#0f342b);overflow:hidden}
+.islamic-blessing:before{content:"";position:absolute;inset:16px;border:1px solid rgba(201,163,95,.16);pointer-events:none}
+.arabic-ornament{font-family:Georgia,"Times New Roman",serif;font-size:clamp(22px,5vw,36px);line-height:1.9;color:#e0c27f;margin:30px auto 20px;max-width:800px}
+.quran-quote{font:italic 20px/1.9 Georgia,"Times New Roman",serif;color:#e8dfd1;max-width:760px;margin:0 auto}
+.verse-ref{margin-top:18px;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:#a9946e}
+.blessing-words{display:flex;justify-content:center;align-items:center;gap:18px;margin-top:34px;text-transform:uppercase;letter-spacing:.25em;font-size:9px;color:#d8bd7b}
+.blessing-words i{font-style:normal;color:#927243}
+@media(max-width:600px){
+  .quran-quote{font-size:18px;line-height:1.8;padding:0 8px}
+  .arabic-ornament{font-size:23px}
+  .blessing-words{gap:10px;letter-spacing:.16em}
+}
+
 </style>
 </head>
 <body>
@@ -135,6 +148,21 @@ h2{font-size:clamp(43px,7vw,72px);line-height:.92;margin:15px 0 24px}.intro p,.c
   </div>
 </section>
 
+<section class="islamic-blessing section-green">
+  <div class="container center reveal">
+    <div class="eyebrow gold">A Qur'anic reminder</div>
+    <div class="arabic-ornament" lang="ar" dir="rtl">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا</div>
+    <blockquote class="quran-quote">
+      “And among His signs is that He created for you spouses from among yourselves,
+      that you may find tranquillity in them; and He placed between you affection and mercy.”
+    </blockquote>
+    <div class="verse-ref">Qur'an · Ar-Rum 30:21</div>
+    <div class="blessing-words">
+      <span>Mawaddah</span><i>•</i><span>Rahmah</span><i>•</i><span>Barakah</span>
+    </div>
+  </div>
+</section>
+
 <section class="family-section section-green">
   <div class="container center reveal">
     <div class="eyebrow gold">With the blessings of our family</div>
@@ -172,7 +200,7 @@ h2{font-size:clamp(43px,7vw,72px);line-height:.92;margin:15px 0 24px}.intro p,.c
   </div>
 </section>
 </main>
-<footer>SHIFANA &amp; AHAMED · NIKAH INVITATION · 27.12.2026</footer>
+<footer>BILAL &amp; SHIFANA · NIKAH INVITATION · 27.12.2026</footer>
 </div>
 <script>
 const openButton=document.getElementById("openInvitation");
