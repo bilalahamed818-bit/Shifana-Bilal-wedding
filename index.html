@@ -114,6 +114,8 @@ h2{font-size:clamp(43px,7vw,72px);line-height:.92;margin:15px 0 24px}.intro p,.c
 
 /* -------- Premium action buttons (Add to Calendar / Share) -------- */
 .action-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px;position:relative;z-index:1}
+.ics-fallback{display:block;margin:16px auto 0;background:none;border:none;color:#a99a80;font-family:var(--font-body);font-style:italic;font-size:12px;letter-spacing:.02em;cursor:pointer;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(169,154,128,.45);position:relative;z-index:1;padding:6px}
+.ics-fallback:hover{color:var(--gold2)}
 .action-btn{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid var(--gold);color:var(--gold2);padding:13px 22px;text-transform:uppercase;letter-spacing:.16em;font-size:9px;cursor:pointer;transition:.3s;font-family:Arial,Helvetica,sans-serif;min-height:44px}
 .action-btn svg{width:14px;height:14px}
 .paper-panel .action-btn{color:#8a6a35;border-color:#a98046}
@@ -202,12 +204,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold2);outline-offs
 /* -------- Role-based staggered reveal for content inside cards -------- */
 .reveal .eyebrow,.reveal h2,.reveal .bismillah{opacity:0;transform:translateY(14px)}
 .reveal .ornament,.reveal .gold-divider,.reveal .crescent,.reveal .mosque-mark,.reveal .arch-top{opacity:0;transform:translateY(10px) scale(.9)}
-.reveal p,.reveal blockquote,.reveal .couple-script,.reveal .final-names,.reveal .arch-card,.reveal .date-card,.reveal .countdown,.reveal .action-row,.reveal .arabic-dua,.reveal .dua-translation,.reveal .dua-meaning,.reveal .dua-label,.reveal .dua-caption,.reveal .small-rule,.reveal .venue-frame{opacity:0;transform:translateY(16px)}
+.reveal p,.reveal blockquote,.reveal .couple-script,.reveal .final-names,.reveal .arch-card,.reveal .date-card,.reveal .countdown,.reveal .action-row,.reveal .arabic-dua,.reveal .dua-translation,.reveal .dua-meaning,.reveal .dua-label,.reveal .dua-caption,.reveal .small-rule,.reveal .venue-frame,.reveal .ics-fallback{opacity:0;transform:translateY(16px)}
 .reveal.show .bismillah{opacity:1;transform:none;transition:opacity .7s ease .04s,transform .7s ease .04s}
 .reveal.show .eyebrow{opacity:1;transform:none;transition:opacity .6s ease .1s,transform .6s ease .1s}
 .reveal.show h2{opacity:1;transform:none;transition:opacity .75s cubic-bezier(.16,.8,.3,1) .18s,transform .75s cubic-bezier(.16,.8,.3,1) .18s}
 .reveal.show .ornament,.reveal.show .gold-divider,.reveal.show .crescent,.reveal.show .mosque-mark,.reveal.show .arch-top{opacity:1;transform:none;transition:opacity .6s ease .26s,transform .6s cubic-bezier(.34,1.56,.64,1) .26s}
-.reveal.show p,.reveal.show blockquote,.reveal.show .couple-script,.reveal.show .final-names,.reveal.show .arch-card,.reveal.show .date-card,.reveal.show .countdown,.reveal.show .action-row,.reveal.show .arabic-dua,.reveal.show .dua-translation,.reveal.show .dua-meaning,.reveal.show .dua-label,.reveal.show .dua-caption,.reveal.show .small-rule,.reveal.show .venue-frame{opacity:1;transform:none;transition:opacity .8s ease .34s,transform .8s ease .34s}
+.reveal.show p,.reveal.show blockquote,.reveal.show .couple-script,.reveal.show .final-names,.reveal.show .arch-card,.reveal.show .date-card,.reveal.show .countdown,.reveal.show .action-row,.reveal.show .arabic-dua,.reveal.show .dua-translation,.reveal.show .dua-meaning,.reveal.show .dua-label,.reveal.show .dua-caption,.reveal.show .small-rule,.reveal.show .venue-frame,.reveal.show .ics-fallback{opacity:1;transform:none;transition:opacity .8s ease .34s,transform .8s ease .34s}
 
 /* -------- Countdown boxes: bouncy staggered pop -------- */
 .countdown>div{opacity:0;transform:translateY(10px) scale(.9)}
@@ -422,6 +424,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold2);outline-offs
         Add to Calendar
       </button>
     </div>
+    <button class="ics-fallback" id="downloadIcs" type="button">or download the event file (.ics)</button>
   </div>
 </section>
 
@@ -695,9 +698,9 @@ function showToast(msg){
   toastTimer=setTimeout(function(){toastEl.classList.remove("show");},2600);
 }
 
-/* ---------- Add to Calendar (.ics download) ---------- */
-function addToCalendar(){
-  var ics=[
+/* ---------- Add to Calendar (platform-aware: this is how it reaches the real calendar) ---------- */
+function buildIcsContent(){
+  return [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
     "PRODID:-//Bilal & Shifana Nikah//EN",
@@ -713,7 +716,31 @@ function addToCalendar(){
     "END:VEVENT",
     "END:VCALENDAR"
   ].join("\r\n");
-  var blob=new Blob([ics],{type:"text/calendar;charset=utf-8"});
+}
+/* iPadOS 13+ reports itself as "Macintosh", so a touch-point check catches it too */
+var isIOS=(/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream)
+  || (navigator.platform==="MacIntel" && navigator.maxTouchPoints>1);
+
+function addToCalendar(){
+  if(isIOS){
+    /* Safari recognises a text/calendar data URI and opens the native Add Event sheet directly — no file, no downloads folder */
+    var dataUri="data:text/calendar;charset=utf-8,"+encodeURIComponent(buildIcsContent());
+    window.location.href=dataUri;
+    showToast("Opening in Calendar…");
+  } else {
+    /* Google Calendar is pre-installed on virtually every Android phone, so a direct prefilled link is the most reliable one-tap option */
+    var gcalUrl="https://calendar.google.com/calendar/render?action=TEMPLATE"
+      +"&text="+encodeURIComponent("Nikah of Ahamed Bilal & Shifana Begum")
+      +"&dates=20261227T063000Z/20261227T103000Z"
+      +"&details="+encodeURIComponent("You are cordially invited to the Nikah of Ahamed Bilal & Shifana Begum.")
+      +"&location="+encodeURIComponent("Jamal Palace")
+      +"&ctz=Asia/Kolkata";
+    window.open(gcalUrl,"_blank");
+  }
+}
+/* Manual fallback: the original file download, kept for Outlook / desktop / anyone who wants the raw file */
+function downloadIcsFile(){
+  var blob=new Blob([buildIcsContent()],{type:"text/calendar;charset=utf-8"});
   var url=URL.createObjectURL(blob);
   var a=document.createElement("a");
   a.href=url;
@@ -722,10 +749,12 @@ function addToCalendar(){
   a.click();
   document.body.removeChild(a);
   setTimeout(function(){URL.revokeObjectURL(url);},1500);
-  showToast("Event saved — check your downloads");
+  showToast("Event file downloaded — open it to add to your calendar");
 }
 document.getElementById("addToCalendar").addEventListener("click",addToCalendar);
 document.getElementById("fabCalendar").addEventListener("click",function(){addToCalendar();fabWrap.classList.remove("open");});
+var icsFallback=document.getElementById("downloadIcs");
+if(icsFallback){icsFallback.addEventListener("click",downloadIcsFile);}
 
 /* ---------- Share Invitation ---------- */
 function shareInvite(){
