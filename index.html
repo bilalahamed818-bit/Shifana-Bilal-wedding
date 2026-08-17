@@ -11,12 +11,13 @@
 <title>Bilal & Shifana | Nikah Invitation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Marcellus&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Marcellus&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Catamaran:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--green:#0b2b25;--green2:#123b32;--green3:#071e1a;--ivory:#f8f2e7;--cream:#eee5d6;--ink:#1c211e;--gold:#c9a35f;--gold2:#e4c982;--muted:#746f66;--line:rgba(201,163,95,.45);
   --font-display:'Marcellus',Georgia,'Times New Roman',serif;
   --font-arabic:'Amiri',Georgia,serif;
   --font-body:'Cormorant Garamond',Georgia,serif;
+  --font-tamil:'Catamaran',"Noto Sans Tamil",sans-serif;
 }
 *{box-sizing:border-box}html{scroll-behavior:smooth;overscroll-behavior-y:none}body{margin:0;background:var(--green3);color:var(--ivory);font-family:Arial,Helvetica,sans-serif;font-weight:300;overscroll-behavior-y:none}.site-shell{overflow:hidden}
 
@@ -40,10 +41,23 @@
 
 /* -------- Ambient floating stars/diamonds (JS-placed) -------- */
 .ambient-star{position:absolute;color:var(--gold2);opacity:.5;pointer-events:none;animation:floatStar 8s ease-in-out infinite;z-index:1}
+.bokeh-orb{position:absolute;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle,rgba(228,201,130,.9) 0%,rgba(228,201,130,.35) 45%,rgba(228,201,130,0) 75%);filter:blur(2px);animation:bokehDrift ease-in-out infinite}
+@keyframes bokehDrift{0%{transform:translate(0,0) scale(1);opacity:0}12%{opacity:var(--bokeh-o,.5)}50%{transform:translate(var(--dx,14px),var(--dy,-22px)) scale(1.08)}88%{opacity:var(--bokeh-o,.5)}100%{transform:translate(0,0) scale(1);opacity:0}}
 @keyframes floatStar{0%,100%{transform:translateY(0) rotate(0deg);opacity:.35}50%{transform:translateY(-16px) rotate(12deg);opacity:.75}}
 
 .hero:before{content:"";position:absolute;inset:18px;border:1px solid var(--line);z-index:1}.hero:after{content:"";position:absolute;inset:28px;border:1px solid rgba(201,163,95,.18);z-index:1}
-.hero-card{position:relative;z-index:2;width:min(880px,88%);padding:54px 30px;text-align:center;border:1px solid var(--line);background:rgba(7,30,26,.55);box-shadow:0 30px 80px rgba(0,0,0,.25);backdrop-filter:blur(3px);animation:heroIn 1.2s ease both}
+.hero-card{position:relative;z-index:2;width:min(880px,88%);padding:54px 30px;text-align:center;border:1px solid var(--line);background:rgba(7,30,26,.55);box-shadow:0 30px 80px rgba(0,0,0,.25);backdrop-filter:blur(3px);animation:heroIn .9s ease .85s both}
+.hero-card>*:not(.open-btn){opacity:0;transform:translateY(14px);animation:heroChildIn .7s cubic-bezier(.16,.8,.3,1) both}
+.hero-card>*:not(.open-btn):nth-child(1){animation-delay:1.05s}
+.hero-card>*:not(.open-btn):nth-child(2){animation-delay:1.16s}
+.hero-card>*:not(.open-btn):nth-child(3){animation-delay:1.25s}
+.hero-card>*:not(.open-btn):nth-child(4){animation-delay:1.33s}
+.hero-card>*:not(.open-btn):nth-child(5){animation-delay:1.4s}
+.hero-card>*:not(.open-btn):nth-child(6){animation-delay:1.46s}
+.hero-card>*:not(.open-btn):nth-child(7){animation-delay:1.54s}
+.hero-card>*:not(.open-btn):nth-child(8){animation-delay:1.68s}
+.hero-card>.open-btn{opacity:0;transform:translateY(14px);animation:heroChildIn .7s cubic-bezier(.16,.8,.3,1) 1.8s both,btnPulse 3.4s ease-in-out 2.6s infinite}
+@keyframes heroChildIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 .hero-card:before,.hero-card:after{content:"";position:absolute;width:42px;height:42px;border:1px solid var(--gold);opacity:.7}.hero-card:before{left:13px;top:13px;border-right:0;border-bottom:0}.hero-card:after{right:13px;bottom:13px;border-left:0;border-top:0}
 @keyframes heroIn{from{opacity:0;transform:translateY(20px) scale(.98)}to{opacity:1;transform:none}}
 .bismillah{font-family:var(--font-arabic);font-size:clamp(23px,5vw,36px);color:var(--gold2);line-height:1.7}.eyebrow{text-transform:uppercase;letter-spacing:.32em;font-size:9px;color:var(--gold2);margin:13px 0}.eyebrow.green{color:#8d7959}.eyebrow.spaced{margin-top:24px}
@@ -69,6 +83,13 @@ h1,h2,h3,.couple-script,.final-names{font-family:var(--font-display);font-weight
 
 /* -------- Vector corner flourish (replaces plain text glyphs) -------- */
 .corner{position:absolute;z-index:2;color:var(--gold);opacity:.8}
+.lang-toggle{position:absolute;top:20px;right:20px;z-index:5;display:flex;align-items:center;gap:7px;background:rgba(7,30,26,.55);border:1px solid var(--line);border-radius:30px;padding:6px 11px;backdrop-filter:blur(6px)}
+.lang-btn{background:none;border:none;color:#a99a80;font-size:11px;letter-spacing:.03em;cursor:pointer;padding:5px 9px;border-radius:16px;font-family:var(--font-tamil);transition:color .3s ease,background .3s ease}
+.lang-btn.active{color:#09231e;background:linear-gradient(135deg,var(--gold),var(--gold2));font-weight:600}
+.lang-sep{color:var(--line);font-size:10px}
+html.lang-ta [data-ta]{font-family:var(--font-tamil)}
+html.lang-ta .eyebrow[data-ta],html.lang-ta .dua-label[data-ta]{letter-spacing:.03em}
+html.lang-ta h2[data-ta]{letter-spacing:0}
 .corner svg{width:38px;height:38px;filter:drop-shadow(0 0 4px rgba(201,163,95,.15))}
 .corner-tl{top:45px;left:46px}.corner-tr{top:45px;right:46px;transform:scaleX(-1)}.corner-bl{bottom:45px;left:46px;transform:scaleY(-1)}.corner-br{bottom:45px;right:46px;transform:scale(-1)}
 
@@ -147,9 +168,8 @@ h2{font-size:clamp(43px,7vw,72px);line-height:.92;margin:15px 0 24px}.intro p,.c
 .venue-frame{border:1px solid #cdbfae;padding:9px;max-width:760px;margin:auto;position:relative;overflow:hidden;background:var(--cream);box-shadow:0 34px 80px -28px rgba(0,0,0,.55)}.venue-inner{border:1px solid #d6cabb;padding:65px 20px;position:relative;z-index:1}
 .mosque-mark{color:#9b7743;margin:4px 0 10px;display:flex;justify-content:center}.mosque-mark svg{width:44px;height:44px}
 .venue-inner p{color:#756c61;line-height:1.9;font-family:var(--font-body);font-size:16px}.map-btn{display:inline-block;margin-top:22px;padding:14px 27px;border:1px solid #a98046;color:#765a32;text-decoration:none;text-transform:uppercase;font-size:9px;letter-spacing:.2em;transition:.3s;min-height:20px}
-.map-embed{margin:8px auto 0;max-width:480px;border:1px solid var(--line);border-radius:2px;overflow:hidden;box-shadow:0 18px 40px -20px rgba(0,0,0,.35);position:relative}
-.map-embed:before{content:"";position:absolute;inset:0;border:1px solid rgba(201,163,95,.3);pointer-events:none;z-index:1}
-.map-embed iframe{width:100%;height:240px;border:0;display:block;filter:sepia(.1) saturate(.85) contrast(.96)}
+.map-btn-main{display:inline-flex;align-items:center;gap:9px;margin-top:26px;padding:15px 30px}
+.map-btn-main svg{width:16px;height:16px;flex-shrink:0}
 
 .dua-section blockquote{max-width:720px;margin:0 auto;font:italic 24px/1.8 var(--font-body);color:#4d4c45}.small-rule.dark{background:#9d7c4d}.dua-caption{font-size:11px;letter-spacing:.12em;color:#806f58;text-transform:uppercase}
 
@@ -328,19 +348,19 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold2);outline-offs
   <div class="fab-items" id="fabItems">
     <button class="fab-item" id="fabCalendar" type="button">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="1.5"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
-      Add to Calendar
+      <span data-ta="நாள்காட்டியில் சேர்">Add to Calendar</span>
     </button>
     <button class="fab-item" id="fabShare" type="button">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="18" cy="5" r="2.4"/><circle cx="6" cy="12" r="2.4"/><circle cx="18" cy="19" r="2.4"/><path d="M8.2 10.8 15.8 6.2M8.2 13.2 15.8 17.8"/></svg>
-      Share Invitation
+      <span data-ta="அழைப்பிதழைப் பகிரவும்">Share Invitation</span>
     </button>
-    <a class="fab-item" id="fabMap" href="https://g.co/kgs/HHfaZW" target="_blank" rel="noopener noreferrer">
+    <a class="fab-item" id="fabMap" href="https://www.google.com/maps/search/?api=1&query=Jamal%20Palace%2C%2019%20Palaniappan%20Street%2C%20Periyar%20Nagar%2C%20Nagalkeni%2C%20Pallavaram%2C%20Chennai%2C%20Tamil%20Nadu%20600044" target="_blank" rel="noopener noreferrer">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>
-      View Venue
+      <span data-ta="வழி காட்டு">View Venue</span>
     </a>
     <button class="fab-item" id="fabTop" type="button">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-      Back to Top
+      <span data-ta="மேலே செல்ல">Back to Top</span>
     </button>
   </div>
 </div>
@@ -351,6 +371,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold2);outline-offs
   <div class="mandala reverse" aria-hidden="true"><svg viewBox="0 0 300 300"><use href="#starTile"></use></svg></div>
   <div class="pattern"></div>
   <div class="hero-vignette" aria-hidden="true"></div>
+  <div class="lang-toggle" id="langToggle" role="group" aria-label="Language">
+    <button type="button" class="lang-btn active" data-lang="en">EN</button>
+    <span class="lang-sep">|</span>
+    <button type="button" class="lang-btn" data-lang="ta">தமிழ்</button>
+  </div>
   <div id="ambientLayer" aria-hidden="true"></div>
   <div class="corner corner-tl" aria-hidden="true"><svg><use href="#cornerFlourish"></use></svg></div>
   <div class="corner corner-tr" aria-hidden="true"><svg><use href="#cornerFlourish"></use></svg></div>
@@ -359,13 +384,13 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold2);outline-offs
   <div class="hero-card">
     <div class="bismillah" lang="ar" dir="rtl">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
     <div class="gold-divider"><span></span><i>✦</i><span></span></div>
-    <div class="eyebrow">With the blessings of Allah</div>
-    <div class="eyebrow spaced">You are cordially invited</div>
+    <div class="eyebrow" data-ta="அல்லாஹ்வின் அருளுடன்">With the blessings of Allah</div>
+    <div class="eyebrow spaced" data-ta="அன்புடன் அழைக்கிறோம்">You are cordially invited</div>
     <div class="tiny-rule"></div>
-    <div class="celebrate">TO CELEBRATE THE NIKAH OF</div>
+    <div class="celebrate" data-ta="நிக்காஹ் விழாவிற்கு">TO CELEBRATE THE NIKAH OF</div>
     <h1><span class="shimmer-gold">Ahamed Bilal</span><em>&amp;</em><span class="shimmer-gold">Shifana Begum</span></h1>
     <div class="hero-date">SUNDAY · 27 DECEMBER 2026 · 12:00 PM ONWARDS</div>
-    <button class="open-btn" id="openInvitation">Open Invitation <span>↓</span></button>
+    <button class="open-btn" id="openInvitation"><span data-ta="அழைப்பிதழைத் திறக்க">Open Invitation</span> <span>↓</span></button>
   </div>
 </header>
 
@@ -379,12 +404,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold2);outline-offs
       <span class="pp-corner pp-tr" aria-hidden="true"><svg><use href="#cornerFlourish"></use></svg></span>
       <span class="pp-corner pp-bl" aria-hidden="true"><svg><use href="#cornerFlourish"></use></svg></span>
       <span class="pp-corner pp-br" aria-hidden="true"><svg><use href="#cornerFlourish"></use></svg></span>
-      <div class="eyebrow green">A blessed beginning</div>
-      <h2>Two lives, one beautiful journey</h2>
+      <div class="eyebrow green" data-ta="ஒரு அருள் நிறை தொடக்கம்">A blessed beginning</div>
+      <h2 data-ta="இரு உயிர்கள், ஒரு அழகிய பயணம்">Two lives, one beautiful journey</h2>
       <div class="ornament">✦</div>
-      <p>With the blessings of Allah and with the love and blessings of our families, we joyfully invite you to join us for our Nikah and bless the beginning of a beautiful new chapter in the lives of</p>
+      <p data-ta="அல்லாஹ்வின் அருளுடனும், எங்கள் குடும்பத்தினரின் அன்பு மற்றும் ஆசீர்வாதத்துடனும், எங்கள் நிக்காஹ் விழாவில் கலந்துகொண்டு புதிய அத்தியாயத்தின் தொடக்கத்தை ஆசீர்வதிக்குமாறு மகிழ்ச்சியுடன் அழைக்கிறோம்">With the blessings of Allah and with the love and blessings of our families, we joyfully invite you to join us for our Nikah and bless the beginning of a beautiful new chapter in the lives of</p>
       <div class="couple-script"><span class="shimmer-gold-dark">Bilal</span> <span>&amp;</span> <span class="shimmer-gold-dark">Shifana</span></div>
-      <p class="dua-line">May Allah bless their union with love, mercy, peace and barakah.</p>
+      <p class="dua-line" data-ta="அல்லாஹ் இவர்களின் இணைப்பை அன்பு, கருணை, அமைதி மற்றும் பரக்கத்துடன் ஆசீர்வதிப்பானாக.">May Allah bless their union with love, mercy, peace and barakah.</p>
     </div>
   </div>
 </section>
@@ -400,14 +425,14 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold2);outline-offs
       <span class="pp-corner pp-br" aria-hidden="true"><svg><use href="#cornerFlourish"></use></svg></span>
       <div class="paisley-accent paisley-tl" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#paisleyMotif"></use></svg></div>
       <div class="paisley-accent paisley-br" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#paisleyMotif"></use></svg></div>
-      <div class="eyebrow green">A day of barakah</div>
-      <h2>The Nikah</h2>
+      <div class="eyebrow green" data-ta="பரக்கத் நிறை நாள்">A day of barakah</div>
+      <h2 data-ta="நிக்காஹ்">The Nikah</h2>
       <div class="arch-card">
         <div class="arch-top" aria-hidden="true"><svg viewBox="0 0 54 54"><use href="#crescentStar"></use></svg></div>
-        <h3>In the name of Allah</h3>
-        <p>We invite you to be part of this blessed occasion and to remember the couple in your duas.</p>
+        <h3 data-ta="அல்லாஹ்வின் பெயரால்">In the name of Allah</h3>
+        <p data-ta="இந்த அருள் நிறை நிகழ்வில் பங்கேற்று, இந்த ஜோடியை உங்கள் துஆக்களில் நினைவு கூருமாறு அழைக்கிறோம்.">We invite you to be part of this blessed occasion and to remember the couple in your duas.</p>
         <div class="small-rule"></div>
-        <div class="nikah-note">Your presence and prayers are a precious part of our celebration.</div>
+        <div class="nikah-note" data-ta="உங்கள் வருகையும் பிரார்த்தனையும் எங்கள் கொண்டாட்டத்தின் விலைமதிப்பற்ற பகுதி.">Your presence and prayers are a precious part of our celebration.</div>
       </div>
     </div>
   </div>
@@ -419,18 +444,18 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold2);outline-offs
   <div class="islamic-grid"></div>
   <div id="ambientLayerDate" aria-hidden="true"></div>
   <div class="container center reveal">
-    <div class="eyebrow gold">Save the date</div>
-    <h2>The Wedding Day</h2>
+    <div class="eyebrow gold" data-ta="தேதியை குறித்து வையுங்கள்">Save the date</div>
+    <h2 data-ta="திருமண நாள்">The Wedding Day</h2>
     <div class="date-card">
       <div class="mandala" aria-hidden="true"><svg viewBox="0 0 300 300"><use href="#starTile"></use></svg></div>
-      <div class="weekday">SUNDAY</div>
+      <div class="weekday" data-ta="ஞாயிறு">SUNDAY</div>
       <div class="day">27</div>
-      <div class="month">DECEMBER</div>
+      <div class="month" data-ta="டிசம்பர்">DECEMBER</div>
       <div class="year">2026</div>
       <div class="date-line"></div>
-      <div class="time">12:00 PM <small>ONWARDS</small></div>
+      <div class="time">12:00 PM <small data-ta="முதல்">ONWARDS</small></div>
     </div>
-    <div class="insha-note">In Sha Allah — God willing</div>
+    <div class="insha-note" data-ta="இன் ஷா அல்லாஹ் — அல்லாஹ் நாடினால்">In Sha Allah — God willing</div>
     <div class="action-row">
       <button class="action-btn" id="addToCalendarGoogle" type="button">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="1.5"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
@@ -441,7 +466,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold2);outline-offs
         Apple / Outlook
       </a>
     </div>
-    <button class="ics-fallback" id="downloadIcs" type="button">trouble adding it? save the event file directly</button>
+    <button class="ics-fallback" id="downloadIcs" type="button" data-ta="சேர்க்க முடியவில்லையா? நிகழ்வுக் கோப்பை நேரடியாகச் சேமிக்கவும்">trouble adding it? save the event file directly</button>
   </div>
 </section>
 
@@ -454,15 +479,15 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold2);outline-offs
       <span class="pp-corner pp-tr" aria-hidden="true"><svg><use href="#cornerFlourish"></use></svg></span>
       <span class="pp-corner pp-bl" aria-hidden="true"><svg><use href="#cornerFlourish"></use></svg></span>
       <span class="pp-corner pp-br" aria-hidden="true"><svg><use href="#cornerFlourish"></use></svg></span>
-      <div class="eyebrow green">Until we celebrate</div>
-      <h2>Counting the moments</h2>
+      <div class="eyebrow green" data-ta="கொண்டாட இன்னும்">Until we celebrate</div>
+      <h2 data-ta="நொடிகளை எண்ணுகிறோம்">Counting the moments</h2>
       <div class="countdown" role="timer" aria-live="polite">
-        <div><b id="days">--</b><span>Days</span></div>
-        <div><b id="hours">--</b><span>Hours</span></div>
-        <div><b id="minutes">--</b><span>Minutes</span></div>
-        <div><b id="seconds">--</b><span>Seconds</span></div>
+        <div><b id="days">--</b><span data-ta="நாட்கள்">Days</span></div>
+        <div><b id="hours">--</b><span data-ta="மணி">Hours</span></div>
+        <div><b id="minutes">--</b><span data-ta="நிமிடம்">Minutes</span></div>
+        <div><b id="seconds">--</b><span data-ta="வினாடி">Seconds</span></div>
       </div>
-      <p class="count-note" id="countNote">Until Sunday, 27 December 2026 at 12:00 PM.</p>
+      <p class="count-note" id="countNote" data-ta="ஞாயிறு, 27 டிசம்பர் 2026 அன்று 12:00 மணிக்கு.">Until Sunday, 27 December 2026 at 12:00 PM.</p>
     </div>
   </div>
 </section>
@@ -475,15 +500,16 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold2);outline-offs
       <div class="paisley-accent paisley-tl" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#paisleyMotif"></use></svg></div>
       <div class="paisley-accent paisley-br" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#paisleyMotif"></use></svg></div>
       <div class="venue-inner center">
-        <div class="eyebrow green">The Nikah venue</div>
+        <div class="eyebrow green" data-ta="நிக்காஹ் நடைபெறும் இடம்">The Nikah venue</div>
         <div class="mosque-mark" aria-hidden="true"><svg viewBox="0 0 54 54"><use href="#crescentStar"></use></svg></div>
         <h2>Jamal Palace</h2>
-        <p>27 December 2026<br>12:00 PM onwards</p>
+        <p>No.19 Palaniappan Street, Periyar Nagar, Nagalkeni<br>Pallavaram, Chennai, Tamil Nadu 600044</p>
+        <p>27 December 2026 · 12:00 PM onwards</p>
         <div class="gold-divider"><span></span><i>✦</i><span></span></div>
-        <div class="map-embed">
-          <iframe src="https://www.google.com/maps?q=Jamal%20Palace%2C%2019%20Palaniappan%20Street%2C%20Periyar%20Nagar%2C%20Nagalkeni%2C%20Pallavaram%2C%20Chennai%2C%20Tamil%20Nadu%20600044&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map to Jamal Palace, Pallavaram, Chennai" aria-label="Map to Jamal Palace, Pallavaram, Chennai"></iframe>
-        </div>
-        <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Jamal%20Palace%2C%2019%20Palaniappan%20Street%2C%20Periyar%20Nagar%2C%20Nagalkeni%2C%20Pallavaram%2C%20Chennai%2C%20Tamil%20Nadu%20600044" target="_blank" rel="noopener noreferrer">Get Directions</a>
+        <a class="map-btn map-btn-main" href="https://www.google.com/maps/search/?api=1&query=Jamal%20Palace%2C%2019%20Palaniappan%20Street%2C%20Periyar%20Nagar%2C%20Nagalkeni%2C%20Pallavaram%2C%20Chennai%2C%20Tamil%20Nadu%20600044" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          <span data-ta="வழி காட்டு">Get Directions</span>
+        </a>
       </div>
     </div>
   </div>
@@ -499,16 +525,16 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold2);outline-offs
       <span class="pp-corner pp-bl" aria-hidden="true"><svg><use href="#cornerFlourish"></use></svg></span>
       <span class="pp-corner pp-br" aria-hidden="true"><svg><use href="#cornerFlourish"></use></svg></span>
       <div class="crescent" aria-hidden="true"><svg viewBox="0 0 54 54"><use href="#crescentStar"></use></svg></div>
-      <div class="eyebrow green">A heartfelt dua</div>
-      <h2>May Allah bless this Nikah</h2>
+      <div class="eyebrow green" data-ta="மனமார்ந்த துஆ">A heartfelt dua</div>
+      <h2 data-ta="அல்லாஹ் இந்த நிக்காஹை ஆசீர்வதிப்பானாக">May Allah bless this Nikah</h2>
       <div class="gold-divider"><span></span><i>✦</i><span></span></div>
-      <blockquote>“May Allah bless this union with love and mercy between their hearts, surround them with barakah, and grant them a home filled with faith, peace and happiness.”</blockquote>
+      <blockquote data-ta="“அல்லாஹ் இவர்களின் இணைப்பை அன்புடனும் கருணையுடனும் ஆசீர்வதித்து, பரக்கத்தால் சூழ்ந்து, நம்பிக்கை, அமைதி மற்றும் மகிழ்ச்சி நிறைந்த வீட்டை வழங்குவானாக.”">“May Allah bless this union with love and mercy between their hearts, surround them with barakah, and grant them a home filled with faith, peace and happiness.”</blockquote>
       <div class="arabic-dua" lang="ar" dir="rtl">بَارَكَ اللهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</div>
-      <p class="dua-label">DUA · TRANSLITERATION</p>
+      <p class="dua-label" data-ta="துஆ · உச்சரிப்பு">DUA · TRANSLITERATION</p>
       <p class="dua-translation">Barakallahu lakuma, wa baraka 'alaykuma, wa jama'a baynakuma fi khayr.</p>
-      <p class="dua-meaning">May Allah bless you both, bless your union, and unite you in goodness.</p>
+      <p class="dua-meaning" data-ta="அல்லாஹ் உங்கள் இருவரையும் ஆசீர்வதித்து, உங்கள் இணைப்பை ஆசீர்வதித்து, நன்மையில் ஒன்றிணைப்பானாக.">May Allah bless you both, bless your union, and unite you in goodness.</p>
       <div class="small-rule dark"></div>
-      <div class="dua-caption">Please keep Bilal &amp; Shifana in your duas.</div>
+      <div class="dua-caption" data-ta="பிலால் &amp; ஷிஃபானாவை உங்கள் துஆக்களில் நினைவு கூரவும்.">Please keep Bilal &amp; Shifana in your duas.</div>
     </div>
   </div>
 </section>
@@ -523,23 +549,23 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold2);outline-offs
       <span class="pp-corner pp-bl" aria-hidden="true"><svg><use href="#cornerFlourish"></use></svg></span>
       <span class="pp-corner pp-br" aria-hidden="true"><svg><use href="#cornerFlourish"></use></svg></span>
       <div class="crescent" aria-hidden="true"><svg viewBox="0 0 54 54"><use href="#crescentStar"></use></svg></div>
-      <div class="eyebrow green">With love and blessings</div>
-      <h2>We look forward<br>to seeing you</h2>
+      <div class="eyebrow green" data-ta="அன்புடனும் ஆசீர்வாதத்துடனும்">With love and blessings</div>
+      <h2 data-ta="உங்களை சந்திக்க<br>காத்திருக்கிறோம்">We look forward<br>to seeing you</h2>
       <div class="gold-divider"><span></span><i>✦</i><span></span></div>
-      <p>Your presence and blessings will make this blessed day even more meaningful.</p>
+      <p data-ta="உங்கள் வருகையும் ஆசீர்வாதமும் இந்த அருள் நாளை இன்னும் அர்த்தமுள்ளதாக்கும்.">Your presence and blessings will make this blessed day even more meaningful.</p>
       <div class="final-names"><span class="shimmer-gold-dark">Bilal</span> <span>&amp;</span> <span class="shimmer-gold-dark">Shifana</span></div>
       <div class="final-date">27 · 12 · 2026</div>
       <div class="action-row">
         <button class="action-btn" id="shareInvite" type="button">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="18" cy="5" r="2.4"/><circle cx="6" cy="12" r="2.4"/><circle cx="18" cy="19" r="2.4"/><path d="M8.2 10.8 15.8 6.2M8.2 13.2 15.8 17.8"/></svg>
-          Share Invitation
+          <span data-ta="அழைப்பிதழைப் பகிரவும்">Share Invitation</span>
         </button>
       </div>
     </div>
   </div>
 </section>
 </main>
-<footer>BILAL &amp; SHIFANA · NIKAH INVITATION · 27.12.2026</footer>
+<footer>BILAL &amp; SHIFANA · <span data-ta="நிக்காஹ் அழைப்பிதழ்">NIKAH INVITATION</span> · 27.12.2026</footer>
 </div>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -550,6 +576,27 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold2);outline-offs
 
 /* ---------- Reduced motion preference (checked once, used throughout) ---------- */
 var reduceMotion=window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ---------- EN / Tamil language toggle ---------- */
+var currentLang="en";
+function setLanguage(lang){
+  currentLang=lang;
+  document.querySelectorAll("[data-ta]").forEach(function(el){
+    if(!el.hasAttribute("data-en")){el.setAttribute("data-en",el.innerHTML);}
+    el.innerHTML = lang==="ta" ? el.getAttribute("data-ta") : el.getAttribute("data-en");
+  });
+  document.documentElement.classList.toggle("lang-ta",lang==="ta");
+  document.documentElement.setAttribute("lang",lang==="ta"?"ta":"en");
+  document.querySelectorAll(".lang-btn").forEach(function(b){
+    b.classList.toggle("active",b.getAttribute("data-lang")===lang);
+  });
+  if(typeof countNote!=="undefined" && countNote && target-Date.now()<=0){
+    countNote.textContent = lang==="ta" ? "இன்று அந்த அருள் நாள்." : "Today is the special day.";
+  }
+}
+document.querySelectorAll(".lang-btn").forEach(function(btn){
+  btn.addEventListener("click",function(){setLanguage(btn.getAttribute("data-lang"));});
+});
 
 /* ---------- Preloader: shows briefly, then fades ---------- */
 var loadStart=Date.now();
@@ -579,10 +626,10 @@ function updateCountdown(){
   var r=target-Date.now();
   if(r<=0){
     daysEl.textContent="0";hoursEl.textContent="00";minutesEl.textContent="00";secondsEl.textContent="00";
-    countNote.textContent="Today is the special day.";
+    countNote.textContent = currentLang==="ta" ? "இன்று அந்த அருள் நாள்." : "Today is the special day.";
     return;
   }
-  daysEl.textContent=Math.floor(r/86400000);
+  if(!daysCountUpRunning){daysEl.textContent=Math.floor(r/86400000);}
   hoursEl.textContent=String(Math.floor(r/3600000)%24).padStart(2,"0");
   minutesEl.textContent=String(Math.floor(r/60000)%60).padStart(2,"0");
   secondsEl.textContent=String(Math.floor(r/1000)%60).padStart(2,"0");
@@ -599,6 +646,38 @@ var observer=new IntersectionObserver(function(entries){
   entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add("show");});
 },{threshold:.14});
 document.querySelectorAll(".reveal").forEach(function(el){observer.observe(el);});
+
+/* ---------- One-time "count up" entrance for the days number ---------- */
+var daysCountAnimated=false;
+var daysCountUpRunning=false;
+function animateDaysCountUp(){
+  if(daysCountAnimated) return;
+  daysCountAnimated=true;
+  var finalVal=parseInt(daysEl.textContent,10);
+  if(reduceMotion || isNaN(finalVal) || finalVal<=0) return;
+  daysCountUpRunning=true;
+  var startTime=null,duration=1100;
+  function step(ts){
+    if(!startTime)startTime=ts;
+    var progress=Math.min((ts-startTime)/duration,1);
+    if(progress>=1){
+      daysEl.textContent=finalVal;
+      daysCountUpRunning=false;
+      return;
+    }
+    var eased=1-Math.pow(1-progress,3);
+    daysEl.textContent=Math.floor(eased*finalVal);
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+var countdownEl=document.querySelector(".countdown");
+if(countdownEl){
+  var countdownObserver=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){animateDaysCountUp();countdownObserver.disconnect();}});
+  },{threshold:.5});
+  countdownObserver.observe(countdownEl);
+}
 
 /* ---------- Scroll progress bar + sticky info bar ---------- */
 var progressBar=document.getElementById("scrollProgress");
@@ -648,6 +727,26 @@ function spawnAmbientStars(layer,count){
   }
 }
 
+/* ---------- Soft floating light orbs (bokeh) — gives the hero real atmospheric depth ---------- */
+function spawnBokehOrbs(layer,count){
+  if(!layer) return;
+  for(var i=0;i<count;i++){
+    var orb=document.createElement("span");
+    orb.className="bokeh-orb";
+    var size=22+Math.random()*54;
+    orb.style.width=size+"px";
+    orb.style.height=size+"px";
+    orb.style.left=(Math.random()*94+2)+"%";
+    orb.style.top=(Math.random()*88+4)+"%";
+    orb.style.setProperty("--dx",((Math.random()*50)-25)+"px");
+    orb.style.setProperty("--dy",(-(20+Math.random()*40))+"px");
+    orb.style.setProperty("--bokeh-o",(.25+Math.random()*.35).toFixed(2));
+    orb.style.animationDuration=(9+Math.random()*8)+"s";
+    orb.style.animationDelay=(Math.random()*-14)+"s";
+    layer.appendChild(orb);
+  }
+}
+
 /* ---------- Ambient gold dust drifting the whole page ---------- */
 function spawnGoldDust(layer,count){
   if(!layer) return;
@@ -689,6 +788,8 @@ if(!reduceMotion){
   spawnAmbientStars(document.getElementById("ambientLayer"),7);
   spawnAmbientStars(document.getElementById("ambientLayerDate"),5);
   spawnGoldDust(document.getElementById("goldDustLayer"),16);
+  spawnBokehOrbs(document.getElementById("ambientLayer"),9);
+  spawnBokehOrbs(document.getElementById("ambientLayerDate"),6);
 }
 
 /* ---------- Subtle 3D tilt on the hero card (precise-pointer devices only) ---------- */
@@ -781,7 +882,8 @@ var icsFallback=document.getElementById("downloadIcs");
 if(icsFallback){icsFallback.addEventListener("click",downloadIcsFile);}
 
 /* ---------- Share Invitation ---------- */
-function shareInvite(){
+function shareInvite(originEl){
+  burstSparkles(originEl);
   var shareData={
     title:"Ahamed Bilal & Shifana Begum — Nikah Invitation",
     text:"You are cordially invited to the Nikah of Ahamed Bilal & Shifana Begum, 27 December 2026, Jamal Palace.",
@@ -799,8 +901,8 @@ function shareInvite(){
     showToast("Copy this page's link to share");
   }
 }
-document.getElementById("shareInvite").addEventListener("click",shareInvite);
-document.getElementById("fabShare").addEventListener("click",function(){shareInvite();fabWrap.classList.remove("open");});
+document.getElementById("shareInvite").addEventListener("click",function(e){shareInvite(e.currentTarget);});
+document.getElementById("fabShare").addEventListener("click",function(){shareInvite(document.getElementById("fabShare"));fabWrap.classList.remove("open");});
 
 document.getElementById("fabMap").addEventListener("click",function(){fabWrap.classList.remove("open");});
 
