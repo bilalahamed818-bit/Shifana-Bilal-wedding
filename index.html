@@ -41,12 +41,12 @@
 
 /* -------- Ambient floating stars/diamonds (JS-placed) -------- */
 .ambient-star{position:absolute;color:var(--gold2);opacity:.5;pointer-events:none;animation:floatStar 8s ease-in-out infinite;z-index:1}
-.bokeh-orb{position:absolute;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle,rgba(228,201,130,.9) 0%,rgba(228,201,130,.35) 45%,rgba(228,201,130,0) 75%);filter:blur(2px);animation:bokehDrift ease-in-out infinite}
+.bokeh-orb{position:absolute;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle,rgba(228,201,130,.85) 0%,rgba(228,201,130,.3) 45%,rgba(228,201,130,0) 72%);animation:bokehDrift ease-in-out infinite}
 @keyframes bokehDrift{0%{transform:translate(0,0) scale(1);opacity:0}12%{opacity:var(--bokeh-o,.5)}50%{transform:translate(var(--dx,14px),var(--dy,-22px)) scale(1.08)}88%{opacity:var(--bokeh-o,.5)}100%{transform:translate(0,0) scale(1);opacity:0}}
 @keyframes floatStar{0%,100%{transform:translateY(0) rotate(0deg);opacity:.35}50%{transform:translateY(-16px) rotate(12deg);opacity:.75}}
 
 .hero:before{content:"";position:absolute;inset:18px;border:1px solid var(--line);z-index:1}.hero:after{content:"";position:absolute;inset:28px;border:1px solid rgba(201,163,95,.18);z-index:1}
-.hero-card{position:relative;z-index:2;width:min(880px,88%);padding:54px 30px;text-align:center;border:1px solid var(--line);background:rgba(7,30,26,.55);box-shadow:0 30px 80px rgba(0,0,0,.25);backdrop-filter:blur(3px);animation:heroIn .9s ease .85s both}
+.hero-card{position:relative;z-index:2;width:min(880px,88%);padding:54px 30px;text-align:center;border:1px solid var(--line);background:rgba(7,26,22,.72);box-shadow:0 30px 80px rgba(0,0,0,.25);animation:heroIn .9s ease .85s both}
 .hero-card>*:not(.open-btn){opacity:0;transform:translateY(14px);animation:heroChildIn .7s cubic-bezier(.16,.8,.3,1) both}
 .hero-card>*:not(.open-btn):nth-child(1){animation-delay:1.05s}
 .hero-card>*:not(.open-btn):nth-child(2){animation-delay:1.16s}
@@ -83,7 +83,7 @@ h1,h2,h3,.couple-script,.final-names{font-family:var(--font-display);font-weight
 
 /* -------- Vector corner flourish (replaces plain text glyphs) -------- */
 .corner{position:absolute;z-index:2;color:var(--gold);opacity:.8}
-.lang-toggle{position:absolute;top:20px;right:20px;z-index:5;display:flex;align-items:center;gap:7px;background:rgba(7,30,26,.55);border:1px solid var(--line);border-radius:30px;padding:6px 11px;backdrop-filter:blur(6px)}
+.lang-toggle{position:absolute;top:20px;right:20px;z-index:5;display:flex;align-items:center;gap:7px;background:rgba(7,22,19,.82);border:1px solid var(--line);border-radius:30px;padding:6px 11px}
 .lang-btn{background:none;border:none;color:#a99a80;font-size:11px;letter-spacing:.03em;cursor:pointer;padding:5px 9px;border-radius:16px;font-family:var(--font-tamil);transition:color .3s ease,background .3s ease}
 .lang-btn.active{color:#09231e;background:linear-gradient(135deg,var(--gold),var(--gold2));font-weight:600}
 .lang-sep{color:var(--line);font-size:10px}
@@ -146,7 +146,7 @@ h2{font-size:clamp(43px,7vw,72px);line-height:.92;margin:15px 0 24px}.intro p,.c
 .paper-panel .action-btn:hover{background:var(--gold);color:#2c2213}
 
 /* -------- Sticky quick-info bar (appears once past the hero) -------- */
-.info-bar{position:fixed;top:0;left:50%;transform:translate(-50%,-120%);z-index:900;display:flex;align-items:center;gap:14px;background:rgba(7,30,26,.86);border:1px solid var(--line);border-top:none;padding:9px 20px;font-size:10px;letter-spacing:.14em;color:var(--gold2);text-transform:uppercase;backdrop-filter:blur(6px);transition:transform .4s ease;white-space:nowrap}
+.info-bar{position:fixed;top:0;left:50%;transform:translate(-50%,-120%);z-index:900;display:flex;align-items:center;gap:14px;background:rgba(6,24,20,.94);border:1px solid var(--line);border-top:none;padding:9px 20px;font-size:10px;letter-spacing:.14em;color:var(--gold2);text-transform:uppercase;transition:transform .4s ease;white-space:nowrap}
 .info-bar.show{transform:translate(-50%,0)}
 .info-bar .dot{width:3px;height:3px;border-radius:50%;background:var(--gold)}
 
@@ -799,11 +799,11 @@ function burstSparkles(originEl){
 }
 
 if(!reduceMotion){
-  spawnAmbientStars(document.getElementById("ambientLayer"),7);
-  spawnAmbientStars(document.getElementById("ambientLayerDate"),5);
-  spawnGoldDust(document.getElementById("goldDustLayer"),16);
-  spawnBokehOrbs(document.getElementById("ambientLayer"),9);
-  spawnBokehOrbs(document.getElementById("ambientLayerDate"),6);
+  spawnAmbientStars(document.getElementById("ambientLayer"),5);
+  spawnAmbientStars(document.getElementById("ambientLayerDate"),3);
+  spawnGoldDust(document.getElementById("goldDustLayer"),9);
+  spawnBokehOrbs(document.getElementById("ambientLayer"),5);
+  spawnBokehOrbs(document.getElementById("ambientLayerDate"),3);
 }
 
 /* ---------- Subtle 3D tilt on the hero card (precise-pointer devices only) ---------- */
