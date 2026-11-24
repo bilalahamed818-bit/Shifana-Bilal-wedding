@@ -403,64 +403,6 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold2);outline-offs
 @media(hover:hover) and (pointer:fine){.hero{perspective:1200px}.hero-card{transition:transform .25s ease}}
 
 @media(prefers-reduced-motion:reduce){.gold-dust-layer,.preloader-ring,.dust-mote{display:none!important}.preloader{transition:none!important}}
-
-/* -------- Bilal & Shifana: luxe embossed ivory-and-gold envelope -------- */
-.envelope{
-  background:
-    radial-gradient(ellipse at 50% 50%,rgba(255,255,255,.98) 0%,rgba(255,250,241,.96) 48%,rgba(244,230,207,.98) 100%);
-  isolation:isolate;
-}
-/* The diagonal gold folds sit beneath the paper flaps, like a folded luxury invitation. */
-.envelope:before{
-  content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
-  background:
-    linear-gradient(145deg,transparent 0 47.8%,rgba(190,135,65,.20) 48%,rgba(255,230,174,.9) 49.2%,#dca64f 50%,rgba(255,235,190,.92) 50.8%,rgba(190,135,65,.18) 51.3%,transparent 52%),
-    linear-gradient(35deg,transparent 0 47.8%,rgba(190,135,65,.16) 48%,rgba(255,230,174,.88) 49.2%,#dca64f 50%,rgba(255,235,190,.9) 50.8%,rgba(190,135,65,.18) 51.3%,transparent 52%);
-  opacity:.9;
-}
-.env-panel{z-index:1;filter:drop-shadow(0 2px 3px rgba(139,99,52,.08));}
-.env-top{
-  background:
-    radial-gradient(ellipse at 50% 78%,rgba(255,255,255,.96),transparent 48%),
-    linear-gradient(180deg,#fffdf8 0%,#fbf4e9 68%,#f0dfc5 100%);
-}
-.env-bottom{
-  background:
-    radial-gradient(ellipse at 50% 18%,rgba(255,255,255,.96),transparent 48%),
-    linear-gradient(0deg,#fffdf8 0%,#fbf4e9 68%,#f0dfc5 100%);
-}
-.env-left{background:linear-gradient(90deg,#fffaf1 0%,#f8eddb 78%,#e8d2ae 100%)}
-.env-right{background:linear-gradient(270deg,#fffaf1 0%,#f8eddb 78%,#e8d2ae 100%)}
-/* Gold inner folds: the crisp X-shaped highlights in the reference invitation. */
-.env-top:after,.env-bottom:after{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(135deg,transparent 42%,rgba(190,133,58,.10) 48%,rgba(255,222,157,.94) 49.5%,#d9a34e 50%,rgba(255,231,185,.95) 50.7%,rgba(190,133,58,.12) 52%,transparent 58%);
-  opacity:.78;
-}
-.env-top .env-fl,.env-bottom .env-fl{opacity:.12;width:min(68vw,290px);filter:drop-shadow(0 1px 1px rgba(255,255,255,.9));}
-.env-top .env-fl{top:5%}.env-bottom .env-fl{bottom:4%}
-.env-left .env-sp,.env-right .env-sp{top:24%;height:52%;opacity:.68;filter:drop-shadow(1px 1px 0 rgba(255,255,255,.9));}
-.ee-l{color:#fffdf8}.ee-s{color:rgba(164,119,63,.24)}
-.env-seams{z-index:3;opacity:.76}
-.env-seams>path:first-child{stroke:rgba(160,112,55,.24)}
-.env-seal{
-  z-index:6;width:124px;height:124px;margin:-62px 0 0 -62px;
-  filter:drop-shadow(0 12px 15px rgba(112,75,35,.28));
-}
-.env-seal svg{overflow:visible}
-.env-seal svg text{font-size:25px;letter-spacing:-1px}
-.env-hint{top:calc(50% + 82px);color:#98764e;font-size:15px;letter-spacing:.04em;text-shadow:0 1px 0 rgba(255,255,255,.8)}
-.env-bismillah{top:4.2%;font-size:21px;color:#9b6a35;text-shadow:0 1px 0 rgba(255,255,255,.8)}
-.envelope:after{inset:13px;border-color:rgba(190,145,83,.26);box-shadow:inset 0 0 0 5px rgba(255,255,255,.4),inset 0 0 0 6px rgba(190,145,83,.12)}
-/* A soft champagne light glows from the meeting point of the folds. */
-.env-glow{width:70px;height:70px;margin:-35px 0 0 -35px;z-index:5;background:radial-gradient(circle,#fff 0%,rgba(255,242,204,.96) 22%,rgba(244,197,112,.55) 48%,transparent 74%);}
-.env-rays{z-index:4;opacity:0;background:repeating-conic-gradient(rgba(255,232,177,.42) 0 2deg,transparent 2deg 10deg);}
-@media(max-width:480px){
-  .env-seal{width:116px;height:116px;margin:-58px 0 0 -58px}
-  .env-bismillah{font-size:19px}
-  .env-top .env-fl,.env-bottom .env-fl{width:74vw}
-}
-
 </style>
 </head>
 <body>
@@ -574,7 +516,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold2);outline-offs
   <div class="hero-card">
     <div class="bismillah" lang="ar" dir="rtl">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
     <div class="gold-divider"><span></span><i>✦</i><span></span></div>
-    <div class="eyebrow" data-ta="அல்லாஹ்வின் அருளுடன்">With the blessings of Allah</div>
+    <div class="eyebrow" data-ta="அல்லாஹ்வின் அருளுடன்">With the blessings of Almighty Allah</div>
     <div class="eyebrow spaced" data-ta="அன்புடன் அழைக்கிறோம்">You are cordially invited</div>
     <div class="tiny-rule"></div>
     <div class="celebrate" data-ta="நிக்காஹ் விழாவிற்கு">TO CELEBRATE THE NIKAH OF</div>
@@ -601,7 +543,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold2);outline-offs
       <p class="kin" data-ta="திரு &amp; திருமதி எம். ஜமால் முகமது அவர்களின் மகள்">Daughter of Mr &amp; Mrs M. Jamal Mohamed</p>
       <div class="small-rule"></div>
       <h3 class="dear" data-ta="அன்புடையீர்!">Dear Friends and Family</h3>
-      <p data-ta="அல்லாஹ்வின் அருளுடனும், எங்கள் குடும்பத்தினரின் அன்பு மற்றும் ஆசீர்வாதத்துடனும், எங்கள் நிக்காஹ் விழாவில் கலந்துகொண்டு புதிய அத்தியாயத்தின் தொடக்கத்தை ஆசீர்வதிக்குமாறு மகிழ்ச்சியுடன் அழைக்கிறோம்">With the blessings of Allah and the love of our families, we joyfully invite you to join us for our Nikah and bless the beginning of a beautiful new chapter.</p>
+      <p data-ta="எல்லாம் வல்ல அல்லாஹ்வின் அருளுடனும், எங்கள் அன்பிற்குரிய நபி முஹம்மது ﷺ அவர்களின் அழகிய சுன்னத்தைப் பின்பற்றியும், எங்கள் குடும்பத்தினரின் அன்பு மற்றும் ஆசீர்வாதத்துடனும், எங்கள் நிக்காஹ் விழாவில் கலந்துகொண்டு புதிய அத்தியாயத்தின் தொடக்கத்தை ஆசீர்வதிக்குமாறு மகிழ்ச்சியுடன் அழைக்கிறோம்.">With the blessings of Almighty Allah and following the beautiful Sunnah of our beloved Prophet Muhammad ﷺ, together with the love and blessings of our families, we joyfully invite you to join us for our Nikah and bless the beginning of a beautiful new chapter.</p>
       <p class="dua-line" data-ta="அல்லாஹ் இவர்களின் இணைப்பை அன்பு, கருணை, அமைதி மற்றும் பரக்கத்துடன் ஆசீர்வதிப்பானாக.">May Allah bless their union with love, mercy, peace and barakah.</p>
     </div>
   </div>
